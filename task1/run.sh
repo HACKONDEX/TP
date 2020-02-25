@@ -13,4 +13,4 @@ done
 
 cd ..
 tar -czf $4 $3
-echo Done
+echo done
