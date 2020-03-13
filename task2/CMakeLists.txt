@@ -9,29 +9,52 @@ project(C)
 # execute_process(COMMAND echo PROJECT_SOURCE_DIR)
 # execute_process(COMMAND echo ${PROJECT_SOURCE_DIR})
 
+
+set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
+
 execute_process(COMMAND python3 ${CMAKE_CURRENT_SOURCE_DIR}/A/preparing.py 
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/A
 )
 
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/B)
+enable_testing()
 
+
+
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/B)
+add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/googletest)
+
+
+ 
 include_directories(PUBLIC ${CMAKECMAKE_CURRENT_SOURCE_DIR}/A
                     ${CMAKECMAKE_CURRENT_SOURCE_DIR}/B
                     ${CMAKECMAKE_CURRENT_SOURCE_DIR}/C
+                    ${CMAKECMAKE_CURRENT_SOURCE_DIR}/googletest
                     ${CMAKECMAKE_CURRENT_SOURCE_DIR}
 )
 
+
+
 set(SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/C/main.cpp)
+
 set(HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/A/index.h ${CMAKE_CURRENT_SOURCE_DIR}/B/lib.h ${CMAKE_CURRENT_SOURCE_DIR}/C/main.h)
 
 
+
 make_directory(${CMAKE_CURRENT_SOURCE_DIR}/bin)
+
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin)
 
+
+
 add_executable(C ${SOURCES} ${HEADERS})
+add_executable(CTest ${CMAKE_CURRENT_SOURCE_DIR}/C/main_test.cpp)
 
 
-link_libraries(C lib_B)
+
+target_link_libraries(C lib_B)
+target_link_libraries(CTest gtest_main)
+# target_link_libraries(CTest ${CMAKE_CURRENT_SOURCE_DIR}/gtest_main)
 
 
 
