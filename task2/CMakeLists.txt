@@ -22,7 +22,7 @@ enable_testing()
 
 
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/B)
-add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/googletest)
+# add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/googletest)
 
 
  
