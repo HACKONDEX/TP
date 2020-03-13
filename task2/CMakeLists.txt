@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.5)
 
 project(C)
 
@@ -18,13 +18,10 @@ execute_process(COMMAND python3 ${CMAKE_CURRENT_SOURCE_DIR}/A/preparing.py
 )
 
 enable_testing()
-
+# find_package(GTest REQUIRED)
 
 
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/B)
-
-# add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/googletest)
-
 
  
 include_directories(PUBLIC ${CMAKECMAKE_CURRENT_SOURCE_DIR}/A
