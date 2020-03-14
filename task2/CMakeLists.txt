@@ -17,11 +17,15 @@ execute_process(COMMAND python3 ${CMAKE_CURRENT_SOURCE_DIR}/A/preparing.py
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/A
 )
 
+
+
 enable_testing()
 find_package(GTest REQUIRED)
+# find_package()
 include(GoogleTest)
 
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/B)
+
 # add_subdirectory(googletest)
 
  
@@ -34,7 +38,7 @@ include_directories(PUBLIC ${CMAKECMAKE_CURRENT_SOURCE_DIR}/A
 
 
 
-set(SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/C/main.cpp)
+set(SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/C/main.cpp) 
 
 set(HEADERS ${CMAKE_CURRENT_SOURCE_DIR}/A/index.h ${CMAKE_CURRENT_SOURCE_DIR}/B/lib.h ${CMAKE_CURRENT_SOURCE_DIR}/C/main.h)
 
@@ -50,6 +54,12 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin)
 add_executable(C ${SOURCES} ${HEADERS})
 add_executable(CTest ${CMAKE_CURRENT_SOURCE_DIR}/C/main_test.cpp)
 
+target_link_libraries(C lib_B)
+target_link_libraries(CTest gtest_main)
+target_link_libraries(CTest gtest)
+target_link_libraries(CTest lib_B)
+target_link_libraries(C gtest_main)
+
 add_test(
     NAME CTest1
     COMMAND CTest1
@@ -59,11 +69,6 @@ add_test(
     NAME CTest2
     COMMAND CTest2
 )
-
-
-target_link_libraries(C lib_B)
-target_link_libraries(CTest gtest_main)
-target_link_libraries(C gtest_main)
 # target_link_libraries(CTest gtest_main)
 
 

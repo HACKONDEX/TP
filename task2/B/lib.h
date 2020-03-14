@@ -3,7 +3,7 @@
 
 int do_B()
 {
-    return 555;
+    return 666;
 } 
 
 #endif
