@@ -22,7 +22,7 @@ find_package(GTest REQUIRED)
 include(GoogleTest)
 
 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/B)
-add_subdirectory(googletest)
+# add_subdirectory(googletest)
 
  
 include_directories(PUBLIC ${CMAKECMAKE_CURRENT_SOURCE_DIR}/A
