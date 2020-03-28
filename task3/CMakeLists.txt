@@ -45,7 +45,6 @@ set(CMAKE_FIND_ROOT_PATH ${TOOLCHAIN})
 
 set(CMAKE_C_COMPILER ${TOOLCHAIN}/arm-linux-gnueabihf-gcc)
 set(CMAKE_CXX_COMPILER ${TOOLCHAIN}/arm-linux-gnueabihf-g++)
-set(CMAKE_ASM_COMPILER ${TOOL_CHAIN}/arm-linux-gnueabihf-gcc)
 
 
 set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
