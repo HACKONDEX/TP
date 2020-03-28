@@ -3,22 +3,20 @@ cmake_minimum_required(VERSION 2.8)
 
 set(CMAKE_SYSTEM_NAME Linux)
 
-set(CMAKE_C_COMPILER arm-linux-gnueabihf-gcc)
-set(CMAKE_CXX_COMPILER arm-linux-gnueabihf-g++)
-set(CMAKE_ASM_COMPILER arm-linux-gnueabihf-gcc)
+# set(CMAKE_C_COMPILER arm-linux-gnueabihf-gcc)
+# set(CMAKE_CXX_COMPILER arm-linux-gnueabihf-g++)
+# set(CMAKE_ASM_COMPILER arm-linux-gnueabihf-gcc)
 
-set(CMAKE_FIND_ROOT_PATH ${SYSROOT})
-set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
-set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
-set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY))
+# set(CMAKE_FIND_ROOT_PATH ${SYSROOT})
+# set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
+# set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
+# set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY))
 
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/../lib)
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/../lib)
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/../bin)
+# set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/../lib)
+# set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/../lib)
+# set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/../bin)
 
-set(CMAKE_SYSTEM_PROCESSOR arm)
 
-project(SimpleLibrary)
 
 # 1 #################################
 
@@ -41,9 +39,25 @@ project(SimpleLibrary)
 # set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
 # set(CMAKE_FIND_ROOT_PATH_MODE_PACKAGE ONLY)
 
-if(ARM_BUILD)
 
-else()
+
+set(CMAKE_FIND_ROOT_PATH ${TOOLCHAIN})
+
+set(CMAKE_C_COMPILER ${TOOLCHAIN}/arm-linux-gnueabihf-gcc)
+set(CMAKE_CXX_COMPILER ${TOOLCHAIN}/arm-linux-gnueabihf-g++)
+set(CMAKE_ASM_COMPILER ${TOOL_CHAIN}/arm-linux-gnueabihf-gcc)
+
+
+set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
+set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
+set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
+
+# set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib-arm)
+# set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib-arm)
+# set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin-arm)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR})
+set(CMAKE_INSTALL_RPATH ${CMAKE_INSTALL_PREFIX}/lib)
+
 
 
 
@@ -60,12 +74,13 @@ else()
 # set(CMAKE_SYSTEM_PROCESSOR arm)
 
 
-   
 
-
-
+set(CMAKE_SYSTEM_PROCESSOR arm)
 
 ################################
+
+
+project(SimpleLibrary)
 
 include_directories(include)
 
@@ -79,5 +94,12 @@ add_executable(MainLib main_lib.cpp)
 target_link_libraries(MainLib buffer)
 
 ######################################################
+
+install(
+    TARGETS Main MainLib
+    RUNTIME DESTINATION bin
+    LIBRARY DESTINATION lib
+    ARCHIVE DESTINATION lib
+)
 
 
