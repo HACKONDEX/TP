@@ -30,7 +30,7 @@ jobs:
         git clone https://github.com/google/googletest.git
         mv googletest 3rdparty
         MAIN_DIR=$(pwd)
-        echo ${MAIN_DIR}
+        #echo ${MAIN_DIR}
         mkdir build
         cd build
         GOOGLE_TEST_DIR=googletest cmake -DORIGIN=$(pwd) -DCMAKE_INSTALL_PREFIX=$MAIN_DIR/install_folder ..
@@ -47,8 +47,11 @@ jobs:
         cd task4
         tar -zcf test-report.tar.gz test-report.xml 
         
-#     - name: UploadArtifacts
-#       run: |
-#         echo axaxaxaxaxax
-            
-    
+    - name: UploadArtifacts
+      run: |
+        cd task4
+        tar -zcf one_united_file.tar.gz lib bin
+    - uses: actions/upload-artifact@v1          
+      with: 
+       name: Distributive
+       path: task4/Distributive
