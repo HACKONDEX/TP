@@ -113,6 +113,10 @@ TEST( LeapTestCase, throw_test_4 )
 
 TEST( LeapTestCase, throw_test_5 )
 {
-    EXPECT_THROW( LeapTestCase::my_leap( -152 ), std::invalid_argument );
+    EXPECT_THROW( LeapTestCase::my_leap( -4 ), std::invalid_argument );
 }
 
+TEST( LeapTestCase, throw_test_6 )
+{
+    EXPECT_THROW( LeapTestCase::my_leap( 0 ), std::invalid_argument );
+}
